@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Circuit Simulation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f5f5f5;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+        background: #fff;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+      .switch {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+      }
+      .switch-label {
+        margin-right: 10px;
+        font-weight: bold;
+      }
+      .switch input[type="checkbox"] {
+        width: 60px;
+        height: 34px;
+        cursor: pointer;
+      }
+      .light-bulb {
+        font-size: 80px;
+        color: #aaa;
+        transition: color 0.4s;
+      }
+      .light-on {
+        color: gold;
+      }
+      .label {
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Network Circuit Simulation</h2>
+      <div class="switch">
+        <span class="switch-label">Subnet Mask:</span>
+        <input type="checkbox" id="switch1" />
+      </div>
+      <div class="switch">
+        <span class="switch-label">IP Address:</span>
+        <input type="checkbox" id="switch2" />
+      </div>
+      <div class="light-bulb" id="lightBulb">⭕</div>
+      <div class="label">Network Address</div>
+    </div>
+
+    <script>
+      // Get the elements
+      const switch1 = document.getElementById("switch1");
+      const switch2 = document.getElementById("switch2");
+      const lightBulb = document.getElementById("lightBulb");
+
+      // Function to check the status of the switches and update the light bulb
+      function updateLightBulb() {
+        if (switch1.checked && switch2.checked) {
+          lightBulb.textContent = "💡"; // Turn on the light
+        } else {
+          lightBulb.textContent = "⭕"; // Turn off the light
+        }
+      }
+
+      // Event listeners for the switches
+      switch1.addEventListener("change", updateLightBulb);
+      switch2.addEventListener("change", updateLightBulb);
+
+      // Initialize the light bulb state
+      updateLightBulb();
+    </script>
+  </body>
+</html>
