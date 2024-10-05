@@ -37,9 +37,14 @@
         height: 34px;
         cursor: pointer;
       }
+      .switch-value {
+        font-weight: bold;
+        margin-left: 10px;
+        font-size: 18px;
+      }
       .light-bulb {
         font-size: 80px;
-        color: #aaa;
+        color: #333;
         transition: color 0.4s;
       }
       .light-on {
@@ -55,15 +60,20 @@
   <body>
     <div class="container">
       <h2>Network Circuit Simulation</h2>
+
       <div class="switch">
         <span class="switch-label">Subnet Mask:</span>
         <input type="checkbox" id="switch1" />
+        <span class="switch-value" id="switch1Value">0</span>
       </div>
+
       <div class="switch">
         <span class="switch-label">IP Address:</span>
         <input type="checkbox" id="switch2" />
+        <span class="switch-value" id="switch2Value">0</span>
       </div>
-      <div class="light-bulb" id="lightBulb">⭕</div>
+
+      <div class="light-bulb" id="lightBulb">0</div>
       <div class="label">Network Address</div>
     </div>
 
@@ -72,22 +82,29 @@
       const switch1 = document.getElementById("switch1");
       const switch2 = document.getElementById("switch2");
       const lightBulb = document.getElementById("lightBulb");
+      const switch1Value = document.getElementById("switch1Value");
+      const switch2Value = document.getElementById("switch2Value");
 
-      // Function to check the status of the switches and update the light bulb
-      function updateLightBulb() {
+      // Function to update switch values and the light bulb state
+      function updateCircuit() {
+        // Update the display values next to the switches
+        switch1Value.textContent = switch1.checked ? "1" : "0";
+        switch2Value.textContent = switch2.checked ? "1" : "0";
+
+        // Update the light bulb state
         if (switch1.checked && switch2.checked) {
-          lightBulb.textContent = "💡"; // Turn on the light
+          lightBulb.textContent = "1"; // Turn on the light (1)
         } else {
-          lightBulb.textContent = "⭕"; // Turn off the light
+          lightBulb.textContent = "0"; // Turn off the light (0)
         }
       }
 
       // Event listeners for the switches
-      switch1.addEventListener("change", updateLightBulb);
-      switch2.addEventListener("change", updateLightBulb);
+      switch1.addEventListener("change", updateCircuit);
+      switch2.addEventListener("change", updateCircuit);
 
-      // Initialize the light bulb state
-      updateLightBulb();
+      // Initialize the light bulb and switch values
+      updateCircuit();
     </script>
   </body>
 </html>
